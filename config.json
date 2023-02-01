@@ -1,7 +1,10 @@
-{   
-    "superAdmin":["429771320964939787", "<id of the client that enables changes at name/pic>"],
-    "invite_url":"<discord app invite url>",
-    "MONGO_URI":"<mogodb connect url>",
-    "token":"<discord token>",
-    "prefix":"<disabled by default bus has support>"
+{
+    "superAdmin": [
+        "429771320964939787",
+        "876823881590136852"
+    ],
+    "invite_url": "https://discord.com/api/oauth2/authorize?client_id=1070427574108426302&permissions=8&scope=bot",
+    "MONGO_URI": "mongodb+srv://YTN:18102022@cluster0.vslgnjk.mongodb.net/?retryWrites=true&w=majoritys",
+    "token": "MTA3MDQyNzU3NDEwODQyNjMwMg.G2WJjQ.7GHMsmkkpkPHZktCMLHvEiGOKKKWdql7YHwRu8",
+    "prefix": "<disabled by default bus has support>"
 }
