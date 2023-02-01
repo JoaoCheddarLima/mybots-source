@@ -1,0 +1,22 @@
+{
+  "main": "./src/index.js",
+  "scripts": {
+    "dev": "nodemon ./src/index.js"
+  },
+  "type": "module",
+  "author": "JVRL18",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.7.1",
+    "moment": "^2.29.4",
+    "mongoose": "^6.7.5",
+    "pretty-ms": "^8.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "name": "mybots-app-source-v3",
+  "description": "This is a MYBOTS APP BASE SOURCE,",
+  "version": "1.2.0",
+  "keywords": []
+}
