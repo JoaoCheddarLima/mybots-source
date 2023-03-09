@@ -6,23 +6,23 @@ export const data = new SlashCommandBuilder()
     .addSubcommand(sub =>
         sub
             .setName("avatar")
-            .setDescription("Muda o avatar do bot")
+            .setDescription("Change bot user avatar")
             .addAttachmentOption(option =>
                 option
-                    .setName("foto")
+                    .setName("picture")
                     .setRequired(true)
-                    .setDescription("Foto nova do seu bot")
+                    .setDescription("new avatar")
             )
     )
     .addSubcommand(sub =>
         sub
             .setName("username")
-            .setDescription("Muda o nome do bot")
+            .setDescription("Change bot username")
             .addStringOption(option =>
                 option
                     .setName("nick")
                     .setRequired(true)
-                    .setDescription("novo username do seu bot")
+                    .setDescription("bot username")
             )
     )
 
@@ -41,7 +41,7 @@ export const run = async (interaction, client, typo) => {
                 return interaction.reply({ content: "Não foi possivél colocar este nome, ou ele é muito grande, ou tem usuários demais com este nome.", ephemeral: true })
             })
     }
-    return interaction.client.user.setAvatar(interaction.options.getAttachment("foto").url)
+    return interaction.client.user.setAvatar(interaction.options.getAttachment("picture").url)
         .then(r => {
             return interaction.reply({ content: `avatar alterado com sucesso :)`, ephemeral: true })
         })

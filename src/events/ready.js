@@ -18,22 +18,22 @@ export const execute = async (x, client) => {
   //registerTextCommands() only if message commands is required 
   loadAssets()
   console.log(`\x1b[33m[!] [${commands.length}] Commands set for all guilds.`);
-	
+
   set("strictQuery", true)
   await connect(config.MONGO_URI || "", { keepAlive: true, autoIndex: false, writeConcern: { w: "majority" } })
     .then(res => console.log("\x1b[32m[!] DataBase status: ONLINE\n\n" + bottom))
     .catch(err => console.log("\x1b[31mDataBase login err: " + err))
 
-		    const activities = [
-      { name: `Mybots app`, type: 1 },
-    ];
+  const activities = [
+    { name: `Triple Wind Development`, type: 1 },
+  ];
 
-    let i = 0;
+  let i = 0;
 
-    setInterval(() => {
-      if (i >= activities.length) i = 0
-      client.user.setActivity(activities[i])
-      i++;
-    }, 15 * 1000); // 30 Segundos
+  setInterval(() => {
+    if (i >= activities.length) i = 0
+    client.user.setActivity(activities[i])
+    i++;
+  }, 15 * 1000); // 15sec
 
 }

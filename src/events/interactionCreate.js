@@ -10,37 +10,23 @@ export const execute = async (interaction, client) => {
   //customId buttons handler
   if (!interaction.customId) return
 
-  const commandFiles = [];
-  const findCommands = async (path = "commands_fixed") => {
-    readdirSync(`./src/${path}`).filter(async (file) => {
-      if (file === "aliases" || file.startsWith('_')) return;
-      if (file.endsWith(".js")) return commandFiles.push(file);
-      findCommands(path + `/${file}`);
-    });
-  }
-  await findCommands()
+  const asyncLoader = async (path, search) => {
 
-  for (const file of commandFiles) {
-    let commander;
-    const getCommands = (name, path = "commands_fixed") => {
-      const dirr = `./src/${path}`;
+    const folder = readdirSync(`./src/${path}`)
 
-      readdirSync(dirr).filter((find) => {
-        if (find === name) {
-          commander = `../${path}/${find}`;
-        } else {
-          if (find.endsWith("js") === true) return;
-          if (find === "aliases" || find.startsWith("_")) return;
-          return getCommands(name, path + `/${find}`);
-        }
-      });
-    };
-    getCommands(file);
+    for (const file of folder) {
+      if (file.startsWith("_")) continue;
 
-    if (file.startsWith(interaction.customId)) {
+      if (file.endsWith(search + ".js")) {
+        const command = await import(`../${path}/${file}`).then(file => file).catch(err => { return })
+        return command.execute(interaction, client)
+      };
+      if (file.endsWith('.js')) continue
 
-      const command = await import(commander)
-      command.execute(interaction, client)
+      asyncLoader(`${path}/${file}`, search)
     }
+
   }
+  await asyncLoader("commands_fixed", interaction.customId)
+  
 }
