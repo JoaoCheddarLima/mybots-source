@@ -1,4 +1,4 @@
-DISPLAY_NAME=<MYBOTS APP NAME>
+DISPLAY_NAME=APP NAME
 DESCRIPTION=This hosting gives me headaches sometimes.
 AUTORESTART=true
 MAIN=./src/index.js

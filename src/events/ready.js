@@ -1,7 +1,8 @@
 import { loadAssets } from '../configs/utils/botLoad.js'
-import config from '../../config.json' assert {type: 'json'}
 import pkg from '../../package.json' assert {type: 'json'}
 import { connect, set } from 'mongoose'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const bottom = `\x1b[31m┗╋━━━━━━◢◤◆◥◣━━━━━━━╋┛\n\n\x1b[34m┏╋◆ ${pkg.name.toUpperCase()} ◆╋┓\n\n`
 
@@ -19,13 +20,15 @@ export const execute = async (x, client) => {
   loadAssets()
   console.log(`\x1b[33m[!] [${commands.length}] Commands set for all guilds.`);
 
-  set("strictQuery", true)
-  await connect(config.MONGO_URI || "", { keepAlive: true, autoIndex: false, writeConcern: { w: "majority" } })
-    .then(res => console.log("\x1b[32m[!] DataBase status: ONLINE\n\n" + bottom))
-    .catch(err => console.log("\x1b[31mDataBase login err: " + err))
+  if (process.env.USE_DB) {
+    set("strictQuery", true)
+    await connect(process.env.MONGO_URI, { keepAlive: true, autoIndex: false, writeConcern: { w: "majority" } })
+      .then(res => console.log("\x1b[32m[!] DataBase status: ONLINE\n\n" + bottom))
+      .catch(err => console.log("\x1b[31mDataBase login err: " + err))
+  }
 
   const activities = [
-    { name: `Triple Wind Development`, type: 1 },
+    { name: `Hello world`, type: 1 },
   ];
 
   let i = 0;

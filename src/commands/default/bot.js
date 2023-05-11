@@ -26,7 +26,7 @@ export const data = new SlashCommandBuilder()
             )
     )
 
-export const run = async (interaction, client, typo) => {
+export const run = async (interaction) => {
     const config = await import("../../../config.json", { assert: { type: "json" } })
     const list = config.default.superAdmin
     if (!list.includes(interaction.user.id)) return

@@ -1,3 +1,7 @@
+# public ignores
+.env
+
+# default ignores
 package-lock.json
 /node_modules
-config.json
+yarn.lock

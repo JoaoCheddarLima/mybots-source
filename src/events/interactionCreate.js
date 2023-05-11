@@ -7,7 +7,7 @@ export const execute = async (interaction, client) => {
     return client.commands.get(interaction.commandName)?.run(interaction, client)
   }
 
-  //customId buttons handler
+  //non commands handler (buttons, modals etc.)
   if (!interaction.customId) return
 
   const asyncLoader = async (path, search) => {

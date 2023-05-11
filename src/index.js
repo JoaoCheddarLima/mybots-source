@@ -1,6 +1,7 @@
 import { Client, Collection, IntentsBitField, EmbedBuilder } from 'discord.js';
-import data from '../config.json' assert {type: 'json'};
 import { readdirSync } from 'fs';
+import dotenv from 'dotenv'
+dotenv.config()
 
 const myIntents = new IntentsBitField().add(
     IntentsBitField.Flags.Guilds,
@@ -82,7 +83,7 @@ client.on("messageCreate", async message => {
     await message.channel.send({ embeds: [new_embed(message.content.slice(1).split("!!")[0], img)] })
 })
 
-client.login(data.token)
+client.login(process.env.TOKEN)
     .then(async () => {
         const pkg = await import('../package.json', { assert: { type: "json" } })
         const top = `\x1b[34m┏╋◆ ${pkg.default.name.toUpperCase()} ◆╋┓\n\n\x1b[31m┏╋━━━━━━◥◣◆◢◤━━━━━━━╋┓`
@@ -92,14 +93,3 @@ client.login(data.token)
         //bot by João Bot, last time updated: 25/12/2022
     })
     .catch(err => { console.log("\x1b[31mBot login err: " + err); })
-
-// process.on('unhandRejection', (reason, promise) => {
-//     console.log(`🚨 | [Erro]\n\n + ${reason} ${promise}`);
-//     console.log(promise)
-// });
-// process.on('uncaughtException', (error, origin) => {
-//     console.log(`🚨 | [Erro]\n\n + ${error}, ${origin}`);
-// });
-// process.on('uncaughtExceptionMonitor', (error, origin) => {
-//     console.log(`🚨 | [Erro]\n\n + ${error}, ${origin}`);
-// });
