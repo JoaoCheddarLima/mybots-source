@@ -2,10 +2,7 @@ import { readdirSync } from 'fs';
 
 export const name = "interactionCreate"
 export const execute = async (interaction, client) => {
-  if (interaction.isCommand()) {
-    if (!interaction.member.permissions.has("Administrator")) return
-    return client.commands.get(interaction.commandName)?.run(interaction, client)
-  }
+  if (interaction.isCommand()) return
 
   //non commands handler (buttons, modals etc.)
   if (!interaction.customId) return
@@ -28,5 +25,4 @@ export const execute = async (interaction, client) => {
 
   }
   await asyncLoader("commands_fixed", interaction.customId)
-  
 }

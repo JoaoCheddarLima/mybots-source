@@ -27,9 +27,7 @@ export const data = new SlashCommandBuilder()
     )
 
 export const run = async (interaction) => {
-    const config = await import("../../../config.json", { assert: { type: "json" } })
-    const list = config.default.superAdmin
-    if (!list.includes(interaction.user.id)) return
+    if (!interaction.member.roles.has('Administrator')) return
 
     if (interaction.options.getSubcommand() === 'username') {
         const nome = interaction.options.getString("nick")
